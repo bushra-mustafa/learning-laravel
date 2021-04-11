@@ -14,7 +14,8 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        //
+        $teacher = Teacher::latest()->paginate(4); //
+        return view('teacherindex.index', compact('teacher'));
     }
 
     /**
@@ -24,7 +25,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        //
+        return view('teacherindex.create');
     }
 
     /**
@@ -35,7 +36,15 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'password' => 'require',
+            'name' => 'require',
+            'num' => 'require',
+            'spec' => 'require',
+        ]);
+        $teacher = Teacher::create($request->all());
+        return redirect()->route('teacherindex.index')
+            ->with('success', 'prodct added successflly');
     }
 
     /**
@@ -46,7 +55,7 @@ class TeacherController extends Controller
      */
     public function show(Teacher $teacher)
     {
-        //
+        return view('teacherindex.show', compact('teacher'));
     }
 
     /**
@@ -57,7 +66,7 @@ class TeacherController extends Controller
      */
     public function edit(Teacher $teacher)
     {
-        //
+        return view('teacherindex.edit', compact('teacher'));
     }
 
     /**
@@ -69,7 +78,15 @@ class TeacherController extends Controller
      */
     public function update(Request $request, Teacher $teacher)
     {
-        //
+        $request->validate([
+            'password' => 'require',
+            'name' => 'require',
+            'num' => 'require',
+            'spec' => 'require',
+        ]);
+        $teacher = Teacher::update($request->all());
+        return redirect()->route('teacherindex.index')
+            ->with('success','prodct updated successflly');
     }
 
     /**
@@ -80,6 +97,8 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
+        $teacher->delete();
+
         //
     }
 }

@@ -17,8 +17,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('teacherindex.index');
 });
-Route::resource('teachers', [TeacherController::class]);
-Route::resource('specializations', [SpecializationController::class]);
-Route::resource('student', [StudentController::class]);
+Route::get('/teachers', [TeacherController::class, 'index']);
