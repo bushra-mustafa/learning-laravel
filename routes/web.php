@@ -20,3 +20,8 @@ Route::get('/', function () {
     return view('teacherindex.index');
 });
 Route::get('/teachers', [TeacherController::class, 'index']);
+// Route::resource('/teachers', [TeacherController::class]);
+// Route::resource('/students', [StudentController::class]);
+// Route::resource('/specializaion', [SpecializationController::class]);
+
+// Route::resource('test', [TeacherController::class]);

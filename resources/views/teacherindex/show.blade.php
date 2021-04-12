@@ -1,1 +1,9 @@
-show.blade.php
+@extends('teacherindex.layout')
+
+@section('content')
+
+
+
+
+@endsection
+Show
