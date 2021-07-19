@@ -3,6 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <b style="float: left"> All Category
             </b>
+            {{ Auth::user()->name}}
         </h2>
     </x-slot>
     <div class="py-12">
@@ -28,20 +29,30 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Sl number</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">email</th>
+                                    <th scope="col">Category Name</th>
+                                    <th scope="col">User</th>
                                     <th scope="col">Created at</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">
+                                @php($i=1)
+                                @foreach ($categories as $category )
 
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    </th>
+                                <tr>
+
+                                    <th scope="row"> {{ $i++ }} </th>
+
+                                    <td>{{$category->category_name  }}</td>
+                                    <td>{{  $category->user_id}}</td>
+                                    {{-- =Auth::user()->id --}}
+                                   <td> @if ($category->created_at== Null)
+                                    <span class="text-danger"> NOT DATA SET </span>
+                                    @else
+                                    {{ $category->created_at->diffForHumans() }}</td>
+                                    @endif
                                 </tr>
+                                @endforeach
+
                             </tbody>
                         </table>
                     </div>
