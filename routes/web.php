@@ -34,12 +34,9 @@ Route::middleware(['auth:sanctum', 'verified'])
 })->name('dashboard');
 // Category Controller
 
-Route::get('/category/all',
-[CategoryController::class, 'Allcategory'])
-->name('category');
-Route::get('/category/add',
-[CategoryController::class, 'addcategory'])
-->name('storecategory');
+Route::get('/category/all',[CategoryController::class, 'Allcategory'])->name('category');
+
+Route::post('/category/add',[CategoryController::class, 'addcategory'])->name('storecategory');
 
 // /////////////////////////////////1
 Route::get('/contact', [ContactController::class, 'index']);

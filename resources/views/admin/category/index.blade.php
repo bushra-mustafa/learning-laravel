@@ -36,15 +36,23 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-header"> Add Category </div>
-                        <form action=" {{ route('store.category') }} " method="POST">
+                        <form action=" {{ route('storecategory') }} " method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="exampleInputEmaill">
                                     Category Name
                                 </label>
-                                <input type="text" class="form-control" id="exampleInputEmaill"
+                                <input type="text" name="category_name" class="form-control" id="exampleInputEmaill"
                                     aria-describedby="emailHelp">
+                                @error('category_name')
 
+                                    <span class="text-danger">
+
+                                        {{ $message }}
+                                    </span>
+
+
+                                @enderror
                             </div>
                             <button type="submit" class="btn btn-primary"> Add Category</button>
                         </form>
