@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 use App\Models\Category ;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use App\Http\Controllers\Controller;
+
 use Illuminate\Support\Facades\DB;
 
 use Auth;
-
 
 class CategoryController extends Controller
 {
@@ -16,7 +17,8 @@ class CategoryController extends Controller
         // Eloquent ORM Read Data
         // $categories= Category::latest()->get();
         // Query Builder Read Data
-         $categories= DB::table('categories')->latest()->get();
+        // $categories= DB::table('categories')->latest()->get();
+        $categories= DB::table('categories')->latest()->simplePaginate(5);
 
         return view('admin.category.index', compact('categories'));
     }
