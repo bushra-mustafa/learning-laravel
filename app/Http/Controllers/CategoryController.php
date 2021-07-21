@@ -15,10 +15,11 @@ class CategoryController extends Controller
     public function Allcategory(){
         // $categories= Category::All();
         // Eloquent ORM Read Data
-        // $categories= Category::latest()->get();
+        $categories= Category::latest()->simplePaginate(5);
+
         // Query Builder Read Data
         // $categories= DB::table('categories')->latest()->get();
-        $categories= DB::table('categories')->latest()->simplePaginate(5);
+        // $categories= DB::table('categories')->latest()->simplePaginate(5);
 
         return view('admin.category.index', compact('categories'));
     }
