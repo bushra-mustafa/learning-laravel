@@ -1,10 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <b style="float: left"> All Category
-            </b>
-            {{ Auth::user()->name}}
-        </h2>
+
+            <b style="float: left"> All Category </b>
+            <b style="float: right"> Total Category
+                <span class="badge badge-danger">
+                    {{ count($categories) }}
+                </span></b>
+        </h2><br>
     </x-slot>
     <div class="py-12">
         <div class="container">
@@ -45,10 +48,10 @@
                                     <td>{{$category->category_name  }}</td>
                                     <td>{{  $category->user_id}}</td>
                                     {{-- =Auth::user()->id --}}
-                                   <td> @if ($category->created_at== Null)
+                                    <td> @if ($category->created_at== Null)
                                     <span class="text-danger"> NOT DATA SET </span>
                                     @else
-                                    {{ $category->created_at->diffForHumans() }}</td>
+                                    {{Carbon\Carbon::parse($category->created_at)->diffForHumans() }}</td>
                                     @endif
                                 </tr>
                                 @endforeach
