@@ -15,18 +15,15 @@
                 <div class="col-md-8">
                     <div class="card">
 
-                @if (@session('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        @if (@session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <strong>{{ session('success') }}</strong>
 
-                            <button type="button" class="close"
-                            data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
                             </button>
-                </div>
-                @endif
-
-
+                        </div>
+                        @endif
                         <div class="card-header"> All Category </div>
                         <table class="table ">
                             <thead>
@@ -34,24 +31,37 @@
                                     <th scope="col">Sl number</th>
                                     <th scope="col">Category Name</th>
                                     <th scope="col">User</th>
-                                    <th scope="col">Created at</th>
+                                    <th scope="col">Created at </th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($categories as $category )
+                                @foreach ($categories as $category)
 
                                 <tr>
 
-                                    <th scope="row"> {{ $categories->firstItem()+$loop->index }} </th>
-
-                                    <td>{{$category->category_name  }}</td>
-                                    <td>{{  $category->user->name}}</td>
+                                    <th scope="row">
+                                        {{ $categories->firstItem() + $loop->index }}
+                                    </th>
+                                    <td>{{ $category->category_name }}
+                                    </td>
+                                    <td>{{ $category->user->name }}</td>
                                     {{-- =Auth::user()->id --}}
-                                    <td> @if ($category->created_at== Null)
-                                    <span class="text-danger"> NOT DATA SET </span>
-                                    @else
-                                    {{Carbon\Carbon::parse($category->created_at)->diffForHumans() }}</td>
-                                    @endif
+                                    <td>
+                                        @if ($category->created_at == null)
+                                        <span class="text-danger">
+                                            NOT DATA SET
+                                        </span>
+                                        @else
+                                        {{ Carbon\Carbon::parse($category->created_at)->diffForHumans() }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="{{ url('category/edit/).$category->id
+                     }}" class="btn btn-info">Edit</a>
+                                        <a href="" class="btn btn-danger">delete</a>
+                                    </td>
+
                                 </tr>
                                 @endforeach
 
@@ -63,25 +73,25 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-header"> Add Category </div>
-                        <form action=" {{ route('storecategory') }} " method="POST">
+                        <form action=" {{ route('storecategory' }} " method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="exampleInputEmaill">
                                     Category Name
                                 </label>
-                                <input type="text" name="category_name" class="form-control" id="exampleInputEmaill"
-                                    aria-describedby="emailHelp">
+                                <input type="text" name="category_name" class="form-control" id="exampleInputEmaill" aria-describedby="emailHelp">
                                 @error('category_name')
 
-                                    <span class="text-danger">
+                                <span class="text-danger">
 
-                                        {{ $message }}
-                                    </span>
+                                    {{ $message }}
+                                </span>
 
 
                                 @enderror
                             </div>
-                            <button type="submit" class="btn btn-primary"> Add Category</button>
+                            <button type="submit" class="btn btn-primary"> Add
+                                Category</button>
                         </form>
                     </div>
                 </div>

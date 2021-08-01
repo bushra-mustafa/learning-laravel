@@ -20,25 +20,30 @@ use Illuminate\Support\Facades\DB;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get ('/home', function () {
-    echo "This is Home page" ;
+Route::get('/home', function () {
+    echo 'This is Home page';
 });
 Route::get('/about', function () {
-    return view('welcome' );
+    return view('welcome');
 });
 Route::middleware(['auth:sanctum', 'verified'])
-->get('/dashboard', function () {
-    $users=User::all();
-    return view('dashboard' , compact('users'));
-
-})->name('dashboard');
+    ->get('/dashboard', function () {
+        $users = User::all();
+        return view('dashboard', compact('users'));
+    })
+    ->name('dashboard');
 // Category Controller
 
-Route::get('/category/all',[CategoryController::class, 'Allcategory'])->name('category');
+Route::get('/category/all', [CategoryController::class, 'Allcategory'])->name(
+    'category'
+);
 
-Route::post('/category/add',[CategoryController::class, 'addcategory'])->name('storecategory');
-
+Route::post('/category/add', [CategoryController::class, 'addcategory'])->name(
+    'storecategory'
+);
+Route::get(
+    '/category/edit/{id}',
+    [CategoryController::class, 'Edit']
+);
 // /////////////////////////////////1
 Route::get('/contact', [ContactController::class, 'index']);
-
-

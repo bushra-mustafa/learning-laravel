@@ -25,16 +25,14 @@
                         @php($i = 1)
                         @foreach ($users as $user)
 
-                            <th scope="row">{{ $i++ }}</th>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->created_at->diffForHumans() }}</td>
-                            </tr>
-                            <tr>
+                        <th scope="row">{{ $i++ }}</th>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->created_at->diffForHumans() }}</td>
+                        </tr>
+                        <tr>
 
-                        @endforeach
-
-
+                            @endforeach
                     </tbody>
                 </table>
             </div>
