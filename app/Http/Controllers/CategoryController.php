@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\DB;
 
-use Auth;
+
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class CategoryController extends Controller
@@ -81,7 +81,7 @@ class CategoryController extends Controller
             'user_id' => FacadesAuth::user()->id,
         ]);
         return Redirect()
-            ->route('storecategory')
+            ->route('category')
             ->with('success', 'Category Update Succesfully');
     }
 }

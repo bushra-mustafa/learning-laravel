@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 /*
@@ -38,12 +39,20 @@ Route::get('/category/all', [CategoryController::class, 'Allcategory'])->name(
     'category'
 );
 
-Route::post('/category/add', [CategoryController::class, 'addcategory'])->name(
-    'storecategory'
-);
+Route::post('/category/add', [CategoryController::class, 'addcategory'])->name('storecategory');
+
 Route::get(
     '/category/edit/{id}',
     [CategoryController::class, 'Edit']
+
+);
+
+Route::post(
+    '/category/update/{id}',
+    [
+        CategoryController::class,
+        'Update'
+    ]
 );
 // /////////////////////////////////1
 Route::get('/contact', [ContactController::class, 'index']);
