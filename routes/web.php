@@ -39,7 +39,14 @@ Route::get('/category/all', [CategoryController::class, 'Allcategory'])->name(
     'category'
 );
 
-Route::post('/category/add', [CategoryController::class, 'addcategory'])->name('storecategory');
+Route::post(
+    '/category/add',
+    [
+        CategoryController::class,
+        'addcategory'
+    ]
+)
+    ->name('storecategory');
 
 Route::get(
     '/category/edit/{id}',
@@ -49,10 +56,11 @@ Route::get(
 
 Route::post(
     '/category/update/{id}',
-    [
-        CategoryController::class,
-        'Update'
-    ]
+    [CategoryController::class, 'Update']
+);
+Route::get(
+    'softdelete/category/{id}',
+    [CategoryController::class, 'SoftDelete']
 );
 // /////////////////////////////////1
 Route::get('/contact', [ContactController::class, 'index']);
