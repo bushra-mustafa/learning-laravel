@@ -6,7 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 
@@ -68,7 +68,12 @@ class CategoryController extends Controller
 
     public function Edit($id)
     {
-        $categories = Category::find($id);
+        // Eloquent ORM Edit
+        // $categories = Category::find($id);
+
+        // Query Builder Edit Data
+        $categories = DB::table('categories')->where('id', $id)->first();
+
         return view('admin.category.edit', compact('categories'));
     }
 
@@ -76,10 +81,19 @@ class CategoryController extends Controller
 
     public function Update(Request $request, $id)
     {
-        $update = Category::find($id)->update([
-            'category_name' => $request->category_name,
-            'user_id' => FacadesAuth::user()->id,
-        ]);
+        // Eloquent ORM Update
+        // $update = Category::find($id)->update([
+        //     'category_name' => $request->category_name,
+        //     'user_id' => FacadesAuth::user()->id,
+        // ]);
+
+
+        // Query Builder Edit Data
+
+        $data = array();
+        $data['category_name'] = $request->category_name;
+        $data['user_id'] = FacadesAuth::user()->id;
+        DB::table('categories')->where('id', $id)->update($data);
         return Redirect()
             ->route('category')
             ->with('success', 'Category Update Succesfully');
