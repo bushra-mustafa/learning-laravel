@@ -59,8 +59,12 @@ Route::post(
     [CategoryController::class, 'Update']
 );
 Route::get(
-    'softdelete/category/{id}',
+    '/softdelete/category/{id}',
     [CategoryController::class, 'SoftDelete']
 );
+
+Route::get('/category/restore/{id}', [CategoryController::class, 'Restore']);
+Route::get('/category/pdelete/{id}', [CategoryController::class, 'Pdelete']);
+
 // /////////////////////////////////1
 Route::get('/contact', [ContactController::class, 'index']);
