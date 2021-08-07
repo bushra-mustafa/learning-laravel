@@ -45,9 +45,16 @@ Route::get('/category/pdelete/{id}', [CategoryController::class, 'Pdelete']);
 
 // /////////////////////////////////1
 //  Brand Cont
-Route::get('/brand/all', [BrandController::class, 'Allbrand'])->name('brand');
+Route::get('/brand/all', [BrandController::class, 'Allbrand'])
+    ->name('brand');
+Route::post('/brand/add', [BrandController::class, 'addbrand'])
+    ->name('storebrand');
+Route::get('/brand/edit/{id}', [BrandController::class, 'Edit']);
 
-Route::post('/brand/add', [BrandController::class, 'addbrand'])->name('storebrand');
+Route::post('/brand/update/{id}', [BrandController::class, 'Update']);
+Route::get('/brand/softdelete/{id}', [BrandController::class, 'SoftDelete']);
+Route::get('/brand/restore/{id}', [BrandController::class, 'Restore']);
+Route::get('/brand/pdelete/{id}', [BrandController::class, 'Pdelete']);
 
 
 

@@ -24,7 +24,6 @@ class CategoryController extends Controller
         //     ->simplePaginate(5);
         $categories = Category::All();
 
-
         // Eloquent ORM Read Data
         $categories = Category::latest()->simplePaginate(5);
         $trachCat = Category::onlyTrashed()->latest()->simplePaginate(3);
