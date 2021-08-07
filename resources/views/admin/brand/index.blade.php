@@ -5,7 +5,7 @@
       <b style="float: left"> All Brands </b>
       <b style="float: right"> Total Brands
         <span class="badge badge-danger">
-          {{-- {{ count($categories) }} --}}
+          {{-- {{ count($brands) }} --}}
         </span></b>
     </h2><br>
   </x-slot>
@@ -18,7 +18,6 @@
             @if (@session('success'))
               <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>{{ session('success') }}</strong>
-
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -45,7 +44,7 @@
                     </th>
                     <td>{{ $brand->brand_name }}
                     </td>
-                    <td><img src="" alt=""></td>
+                    <td><img src="{{ asset($brand->brand_image) }}" style="height: 40px; width: 70px;"></td>
                     <td>
                       @if ($brand->created_at == null)
                         <span class="text-danger">
@@ -56,9 +55,9 @@
                       @endif
                     </td>
                     <td>
-                      {{-- <a href=" {{ url('brand/edit/' . $brand->id) }}
+                      <a href=" {{ url('brand/edit/' . $brand->id) }}
                      " class="btn btn-info">Edit</a>
-                      <a href="{{ url('softdelete/brand/' . $brand->id) }}" class="btn btn-danger">delete</a> --}}
+                      <a href="{{ url('brand/softdelete/' . $brand->id) }}" class="btn btn-danger">delete</a>
                     </td>
 
                   </tr>
@@ -72,13 +71,13 @@
         <div class="col-md-4 ">
           <div class="cards">
             <div class="card-header"> Add brand </div>
-            <form action=" {{ route('storecategory') }} " method="POST">
+            <form action=" {{ route('storebrand') }} " method="POST" enctype="multipart/form-data">
               @csrf
               <div class="form-group">
                 <label for="exampleInputEmail1">
                   Brand Name
                 </label>
-                <input type="text" name="Brand_name" class="form-control" id="exampleInputEmail1"
+                <input type="text" name="brand_name" class="form-control" id="exampleInputEmail1"
                   aria-describedby="emailHelp">
                 @error('brand_name')
                   <span class="text-danger">
@@ -90,9 +89,9 @@
                 <label for="exampleInputEmail1">
                   Brand Image
                 </label>
-                <input type="file" name="brand_imge" class="form-control" id="exampleInputEmail1"
+                <input type="file" name="brand_image" class="form-control" id="exampleInputEmail1"
                   aria-describedby="emailHelp">
-                @error('brand_imge')
+                @error('brand_image')
                   <span class="text-danger">
                     {{ $message }}
                   </span>
