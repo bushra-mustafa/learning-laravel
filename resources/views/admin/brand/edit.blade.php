@@ -48,7 +48,7 @@
                     </span>
                   @enderror
                 </div>
-                <div class="form-group">
+                <div class="form-group items-center">
 
                   <img src="{{ asset($brands->brand_image) }}" alt="{{ $brands->brad_name }}"
                     style="height: 200px; width:400px;">

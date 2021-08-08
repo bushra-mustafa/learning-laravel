@@ -95,8 +95,13 @@ class BrandController extends Controller
             return Redirect()->route('brand')->with('success', 'Brand update Success');
         }
     }
-    public function SoftDelete()
+    public function Delete($id)
     {
+        $image = Brand::find($id);
+        $old_image = $image->brand_image;
+        unlink($old_image);
+        $brands = Brand::find($id)->delete();
+        return Redirect()->back()->with('success', 'Brand Delete Success');
     }
     public function Restore()
     {
