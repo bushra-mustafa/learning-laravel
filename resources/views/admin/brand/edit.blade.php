@@ -12,10 +12,12 @@
       <div class="row">
         <div class="col-md-8">
           <div class="card">
+
             <div class="card-header"> Edit brand </div>
             <div class="card-body">
 
-              <form action="{{ url('brand/update/' . $brands->id) }} " method="POST">
+              <form action="{{ url('brand/update/' . $brands->id) }} " method="POST" enctype="multipart/form-data">
+                <input name="old_image" type="hidden" value="{{ $brands->brand_image }}">
                 @csrf
                 <div class="form-group">
                   <label for="exampleInputEmail1">

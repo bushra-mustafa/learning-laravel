@@ -5,7 +5,7 @@
       <b style="float: left"> All Brands </b>
       <b style="float: right"> Total Brands
         <span class="badge badge-danger">
-          {{-- {{ count($brands) }} --}}
+          {{ count($brands) }}
         </span></b>
     </h2><br>
   </x-slot>
