@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MultiImageController;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -52,9 +53,11 @@ Route::post('/brand/add', [BrandController::class, 'addbrand'])
 Route::get('/brand/edit/{id}', [BrandController::class, 'Edit']);
 Route::post('/brand/update/{id}', [BrandController::class, 'Update']);
 Route::get('/brand/delete/{id}', [BrandController::class, 'Delete']);
-// Route::get('/brand/restore/{id}', [BrandController::class, 'Restore']);
-// Route::get('/brand/pdelete/{id}', [BrandController::class, 'Pdelete']);
 
-
+// Multi Image
+Route::get('/multi/image', [BrandController::class, 'multipic'])
+    ->name('Multipic');
+Route::post('/multi/add', [BrandController::class, 'stormultipic'])
+    ->name('StorMulti');
 
 Route::get('/contact', [ContactController::class, 'index']);

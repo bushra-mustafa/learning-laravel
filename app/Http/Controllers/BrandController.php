@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Brand;
+use App\Models\Maltipic;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rules\Unique;
+use Intervention\Image\Facades\Image;
 
 class BrandController extends Controller
 {
@@ -31,14 +33,16 @@ class BrandController extends Controller
             ]
         );
         $brand_image = $request->file('brand_image');
-        $name_gen = hexdec(uniqid());
-        $img_ext = strtolower($brand_image->getClientOriginalExtension());
-        $imge_name = $name_gen . '.' . $img_ext;
-        $up_location = 'image/brand/';
-        $last_img = $up_location . $imge_name;
-        $brand_image->move($up_location, $imge_name);
-        // dd($imge_name);
+        // $name_gen = hexdec(uniqid());
+        // $img_ext = strtolower($brand_image->getClientOriginalExtension());
+        // $imge_name = $name_gen . '.' . $img_ext;
+        // $up_location = 'image/brand/';
+        // $last_img = $up_location . $imge_name;
+        // $brand_image->move($up_location, $imge_name);
 
+        $name_gen = hexdec(uniqid()) . '.' . $brand_image->getClientOriginalExtension();
+        Image::make($brand_image)->resize(300, 200)->save('image/brand/' . $name_gen);
+        $last_img = 'image/brand/' . $name_gen;
         Brand::insert([
             'brand_name' => $request->brand_name,
             'brand_image' => $last_img,
@@ -103,10 +107,14 @@ class BrandController extends Controller
         $brands = Brand::find($id)->delete();
         return Redirect()->back()->with('success', 'Brand Delete Success');
     }
-    public function Restore()
+
+    public function multipic()
     {
+        $images = Maltipic::All();
+        $images = Maltipic::latest()->simplePaginate(5);
+        return view('admin.multipic.index', compact('images'));
     }
-    public function Pdelete()
+    public function stormulti(Request $request)
     {
     }
 }
