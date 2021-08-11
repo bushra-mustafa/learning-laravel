@@ -116,5 +116,30 @@ class BrandController extends Controller
     }
     public function stormulti(Request $request)
     {
+
+
+        $validated = $request->validate(
+            [
+                'image' => 'required|mimes:jpg.jpeg,png',
+
+            ]
+        );
+        $images = $request->file('image');
+
+
+        foreach ($images as $multi_img) {
+
+            $name_gen = hexdec(uniqid()) . '.' . $multi_img->getClientOriginalExtension();
+            Image::make($multi_img)->resize(300, 300)->save('image/brand/' . $name_gen);
+            $last_img = 'image/brand/' . $name_gen;
+
+            Maltipic::insert([
+                'image' => $last_img,
+                'created_at' => Carbon::now()
+
+            ]);
+        };
+        return Redirect()->back()
+            ->with('success', 'Multi Image insert Success');
     }
 }

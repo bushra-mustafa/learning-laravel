@@ -3,7 +3,7 @@
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
 
       <b style="float: left"> All Brands </b>
-      <b style="float: right"> Total Brands
+      <b style="float: right"> Total Image
         <span class="badge badge-danger">
           {{ count($images) }}
         </span></b>
@@ -13,7 +13,16 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8">
-          <div class="card">
+
+          <div class="card-group">
+            @foreach ($images as $item)
+              <div class="col-md-4 mt-5">
+
+                <div class="card">
+                  <img src="{{ asset($item->image) }}" alt="$image->id">
+                </div>
+              </div>
+            @endforeach
 
 
           </div>
@@ -28,7 +37,7 @@
                   <label for="exampleInputEmail1">
                     Multi Image
                   </label>
-                  <input type="file" name="image" class="form-control" id="exampleInputEmail1"
+                  <input type="file" name="image[]" class="form-control" id="exampleInputEmail1"
                     aria-describedby="emailHelp" multiple=>
                   @error('image')
                     <span class="text-danger">
@@ -39,10 +48,12 @@
                 <button type="submit" class="btn btn-primary"> Add
                   Image
                 </button>
+
               </form>
             </div>
           </div>
         </div>
+        {{ $images->Links() }}
       </div>
     </div>
   </div>

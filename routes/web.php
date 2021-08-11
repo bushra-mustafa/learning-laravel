@@ -57,7 +57,7 @@ Route::get('/brand/delete/{id}', [BrandController::class, 'Delete']);
 // Multi Image
 Route::get('/multi/image', [BrandController::class, 'multipic'])
     ->name('Multipic');
-Route::post('/multi/add', [BrandController::class, 'stormultipic'])
+Route::post('/multi/add', [BrandController::class, 'stormulti'])
     ->name('StorMulti');
 
 Route::get('/contact', [ContactController::class, 'index']);
