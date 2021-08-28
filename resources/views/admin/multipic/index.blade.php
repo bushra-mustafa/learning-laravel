@@ -45,8 +45,8 @@
                     </span>
                   @enderror
                 </div>
-                <button type="submit" class="btn btn-primary"> Add
-                  Image
+                <button type="submit" class="btn btn-primary">
+                  Add Image
                 </button>
 
               </form>
